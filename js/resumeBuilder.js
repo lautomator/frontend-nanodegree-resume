@@ -8,7 +8,9 @@ $(function() {
             workExperience = targets.workExperience,
             myProjects = targets.myProjects,
             myEducation = targets.myEducation,
-            mapDivSection = targets.mapDiv;
+            mapDivSection = targets.mapDiv,
+            footerSection = targets.footerSection;
+
         // toggle the sections if there is no data
         if (mainHeader.length === 0) {
             mainHeader.style.display = 'none';
@@ -25,6 +27,9 @@ $(function() {
         if (mapDivSection === null) {
             mapDivSection.style.display = 'none';
         }
+        if (footerSection.length === 0) {
+            footerSection.style.display = 'none';
+        }
     }
 
     // header
@@ -40,9 +45,7 @@ $(function() {
 
     // contact info
     function displayContactInfo() {
-        var HTMLcontactGeneric = '<li class="flex-item"><span class="orange-text">%contact%</span>' +
-                '<span class="white-text">%data%</span></li>',
-            HTMLmobile = '<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>',
+        var HTMLmobile = '<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>',
             HTMLemail = '<li class="flex-item"><span class="orange-text">email</span><span class="white-text">%data%</span></li>',
             HTMLtwitter = '<li class="flex-item"><span class="orange-text">twitter</span><span class="white-text">%data%</span></li>',
             HTMLgithub = '<li class="flex-item"><span class="orange-text">github</span><span class="white-text">%data%</span></li>',
@@ -70,17 +73,18 @@ $(function() {
     function displayBio() {
         var HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills"' +
                 'class="flex-box"></ul>',
-            HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>';
+            HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>',
+            index = 0;
 
-        if (bio.skills && bio.skills !== '') {
+        if (bio.skills) {
             // the skills header
             $("#header").append(HTMLskillsStart);
 
-            for (var item in bio.skills) {
-                if (bio.skills.hasOwnProperty(item)) {
-                    // the skills
-                    $("#skills").append(HTMLskills.replace('%data%', bio.skills[item]));
-                }
+            while (index < bio.skills.length) {
+                // the skills
+                $("#skills").append(HTMLskills.replace('%data%', bio.skills[index]));
+
+                index += 1;
             }
         }
     }
@@ -92,21 +96,22 @@ $(function() {
             HTMLworkTitle = ' - %data%</a>',
             HTMLworkDates = '<div class="date-text">%data%</div>',
             HTMLworkLocation = '<div class="location-text">%data%</div>',
-            HTMLworkDescription = '<p><br>%data%</p>';
+            HTMLworkDescription = '<p><br>%data%</p>',
+            index = 0;
 
-        for (var item in work.jobs) {
-            if (work.jobs.hasOwnProperty(item)) {
-                $("#workExperience").append(HTMLworkStart);
-                // employer and title
-                $(".work-entry:last").append(HTMLworkEmployer.replace('%data%', work.jobs[item].employer) +
-                    HTMLworkTitle.replace('%data%', work.jobs[item].title));
-                // years
-                $(".work-entry:last").append(HTMLworkDates.replace('%data%', work.jobs[item].years));
-                // location
-                $(".work-entry:last").append(HTMLworkLocation.replace('%data%', work.jobs[item].location));
-                // description
-                $(".work-entry:last").append(HTMLworkDescription.replace('%data%', work.jobs[item].description));
-            }
+        while (index < work.jobs.length) {
+            $("#workExperience").append(HTMLworkStart);
+            // employer and title
+            $(".work-entry:last").append(HTMLworkEmployer.replace('%data%', work.jobs[index].employer) +
+                HTMLworkTitle.replace('%data%', work.jobs[index].title));
+            // years
+            $(".work-entry:last").append(HTMLworkDates.replace('%data%', work.jobs[index].years));
+            // location
+            $(".work-entry:last").append(HTMLworkLocation.replace('%data%', work.jobs[index].location));
+            // description
+            $(".work-entry:last").append(HTMLworkDescription.replace('%data%', work.jobs[index].description));
+
+            index += 1;
         }
     }
 
@@ -119,16 +124,17 @@ $(function() {
             HTMLprojectTitle = '<a href="#">%data%</a>',
             HTMLprojectDates = '<div class="date-text">%data%</div>',
             HTMLprojectDescription = '<p><br>%data%</p>',
-            HTMLprojectURL = '<p><a href="%data%" target="_blank">See the project on: gitHub</a></p>';
+            HTMLprojectURL = '<p><a href="%data%" target="_blank">See the project on: gitHub</a></p>',
+            index = 0;
 
-        for (var item in projects.project) {
-            if (projects.project.hasOwnProperty(item)) {
-                $("#projects").append(HTMLprojectStart);
-                $(".project-entry:last").append(HTMLprojectTitle.replace('%data%', projects.project[item].name));
-                $(".project-entry:last").append(HTMLprojectDates.replace('%data%', projects.project[item].year));
-                $(".project-entry:last").append(HTMLprojectDescription.replace('%data%', projects.project[item].description));
-                $(".project-entry:last").append(HTMLprojectURL.replace('%data%', projects.project[item].projectURL));
-            }
+        while (index < projects.project.length) {
+            $("#projects").append(HTMLprojectStart);
+            $(".project-entry:last").append(HTMLprojectTitle.replace('%data%', projects.project[index].name));
+            $(".project-entry:last").append(HTMLprojectDates.replace('%data%', projects.project[index].year));
+            $(".project-entry:last").append(HTMLprojectDescription.replace('%data%', projects.project[index].description));
+            $(".project-entry:last").append(HTMLprojectURL.replace('%data%', projects.project[index].projectURL));
+
+            index += 1;
         }
     }
 
@@ -141,30 +147,35 @@ $(function() {
             HTMLschoolDates = '<div class="date-text">%data%</div>',
             HTMLschoolLocation = '<div class="location-text">%data%</div>',
             HTMLschoolMajor = '<em><br>Major: %data%</em>',
-            HTMLonlineClasses = '<h3>Online Classes</h3>',
-            HTMLonlineTitle = '<a href="#">%data%',
-            HTMLonlineSchool = ' - %data%</a>',
-            HTMLonlineDates = '<div class="date-text">%data%</div>',
-            HTMLonlineURL = '<br><a href="#">%data%</a>';
+            index = 0;
 
-        for (var item in education.school) {
-            if (education.school.hasOwnProperty(item)) {
-                $("#education").append(HTMLschoolStart);
-                $(".education-entry:last").append(HTMLschoolName.replace('%data%', education.school[item].name) +
-                    HTMLschoolDegree.replace('%data%', education.school[item].major));
-                $(".education-entry:last").append(HTMLschoolDates.replace('%data%', education.school[item].dates));
-            }
+        while (index < education.school) {
+            $("#education").append(HTMLschoolStart);
+            $(".education-entry:last").append(HTMLschoolName.replace('%data%', education.school[index].name) +
+                HTMLschoolDegree.replace('%data%', education.school[index].major));
+            $(".education-entry:last").append(HTMLschoolDates.replace('%data%', education.school[index].dates));
+            $(".education-entry:last").append(HTMLschoolLocation.replace('%data%', education.school[index].location));
+            $(".education-entry:last").append(HTMLschoolMajor.replace('%data%', education.school[index].major));
+
+            index += 1;
         }
-
     }
+
+    // footer contents
+    function displayFooter() {
+        var HTMLfooterGit = '<li><a href="%data%" target="_blank">' +
+                '<span class="fa fa-github-square fa-2x"></span></a>"</li>';
+
+        $('#footerContacts').append(HTMLfooterGit.replace('%data%', bio.contacts.github));
+    }
+
 
     // google map
     function initializeMap() {
 
         var locations,
-            map;
-
-        var mapOptions = {
+            map,
+            mapOptions = {
             disableDefaultUI: true
         };
 
@@ -172,22 +183,27 @@ $(function() {
 
         function locationFinder() {
 
+            var i = 0,
+                j = 0;
+
             // initializes an empty array
-            var locations = [];
+            locations = [];
 
             // adds the single location property from bio to the locations array
             locations.push(bio.contacts.location);
 
             // iterates through school locations and appends each location to
             // the locations array
-            for (var school in education.schools) {
-                locations.push(education.schools[school].location);
+            while (i < education.school.length) {
+                locations.push(education.school[i].location);
+                i += 1;
             }
 
             // iterates through work locations and appends each location to
             // the locations array
-            for (var job in work.jobs) {
-                locations.push(work.jobs[job].location);
+            while (j < work.jobs.length) {
+                locations.push(work.jobs[j].location);
+                j += 1;
             }
 
             return locations;
@@ -225,15 +241,19 @@ $(function() {
 
         function pinPoster(locations) {
 
-            var service = new google.maps.places.PlacesService(map);
+            var service = new google.maps.places.PlacesService(map),
+                index = 0,
+                request = {};
 
-            for (var place in locations) {
+            while (index < locations.length) {
 
-                var request = {
-                    query: locations[place]
+                request = {
+                    query: locations[index]
                 };
 
                 service.textSearch(request, callback);
+
+                index += 1;
             }
         }
 
@@ -273,6 +293,7 @@ $(function() {
     displayWork();
     displayProjects();
     displayEducation();
+    displayFooter();
     displayMap();
 
 });

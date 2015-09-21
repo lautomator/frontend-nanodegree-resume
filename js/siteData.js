@@ -70,14 +70,14 @@ var bio = {
             {
                 name: 'The University of the Arts',
                 years: 2,
-                city: 'Philadelphia, PA',
+                location: 'Philadelphia, PA',
                 major: 'Art Education',
                 dates: '1998 - 2000'
             },
             {
                 name: 'Purchase College SUNY',
                 years: 3,
-                city: 'Purchase, NY',
+                location: 'Purchase, NY',
                 major: 'Philosophy',
                 dates: '1990 - 1993'
             }
