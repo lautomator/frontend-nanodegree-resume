@@ -1,170 +1,144 @@
-var bio = {
-    "name": "John Merigliano",
-    "role": "Web Developer",
-    "contacts": {
-        "mobile": "215.360.9523",
-        "email": "jmerigliano@gmail.com",
-        "github": "https://github.com/lautomator/",
-        "twitter": "@JMerigliano",
-        "location": "Philadelphia, PA"
-    },
-    "bioPic": "https://dl.dropboxusercontent.com/u/54256847/MJ4_4983.jpg",
-    "welcomeMsg": "Welcome. Please see my resume to see all of my web development skills. Thanks for visiting",
-    "skills": [
-        "awesomeness",
-        "programming",
-        "teaching",
-        "js"
-    ]
-}
+$(function() {
 
-var work = {
-    "jobs": [
-        {
-            "title": "job pos 1",
-            "employer": "company Fred",
-            "years": "January 2015 -",
-            "location": "city, state",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eros mauris, dictum ut mi eu, faucibus fringilla velit. Ut ac metus eleifend, vulputate arcu et, ultrices est. Sed sodales et lacus vel imperdiet. Suspendisse mollis felis quis cursus posuere. Etiam eget sapien metus. Nunc cursus porta accumsan. Ut pulvinar quis lectus vel condimentum. Mauris tempor eleifend tristique."
-        },
-        {
-            "title": "job pos 2",
-            "employer": "company Wilma",
-            "years": "Date 2015 - Date 2015",
-            "location": "city, state",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eros mauris, dictum ut mi eu, faucibus fringilla velit. Ut ac metus eleifend, vulputate arcu et, ultrices est. Sed sodales et lacus vel imperdiet. Suspendisse mollis felis quis cursus posuere. Etiam eget sapien metus. Nunc cursus porta accumsan. Ut pulvinar quis lectus vel condimentum. Mauris tempor eleifend tristique."
-        },
-        {
-            "title": "job pos 3",
-            "employer": "company Bam Bam",
-            "years": "Date 2015 - Date 2015",
-            "location": "city, state",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eros mauris, dictum ut mi eu, faucibus fringilla velit. Ut ac metus eleifend, vulputate arcu et, ultrices est. Sed sodales et lacus vel imperdiet. Suspendisse mollis felis quis cursus posuere. Etiam eget sapien metus. Nunc cursus porta accumsan. Ut pulvinar quis lectus vel condimentum. Mauris tempor eleifend tristique."
+    'use strict';
+
+    function resumeInit(targets) {
+
+        var mainHeader = targets.mainHeader,
+            workExperience = targets.workExperience,
+            myProjects = targets.myProjects,
+            myEducation = targets.myEducation,
+            mapDivSection = targets.mapDiv,
+            letsConnect = targets.letsConnect;
+
+        // toggle the sections if there is no data
+        if (mainHeader.length === 0) {
+            mainHeader.style.display = 'none';
         }
-    ]
-}
-
-var projects = {
-    "project": [
-        {
-            "name": "Project Name 1",
-            "year": "2015",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eros mauris, dictum ut mi eu, faucibus fringilla velit. Ut ac metus eleifend, vulputate arcu et, ultrices est. Sed sodales et lacus vel imperdiet. Suspendisse mollis felis quis cursus posuere. Etiam eget sapien metus. Nunc cursus porta accumsan. Ut pulvinar quis lectus vel condimentum. Mauris tempor eleifend tristique."
-        },
-        {
-            "name": "Project Name 2",
-            "year": "2015",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eros mauris, dictum ut mi eu, faucibus fringilla velit. Ut ac metus eleifend, vulputate arcu et, ultrices est. Sed sodales et lacus vel imperdiet. Suspendisse mollis felis quis cursus posuere. Etiam eget sapien metus. Nunc cursus porta accumsan. Ut pulvinar quis lectus vel condimentum. Mauris tempor eleifend tristique."
+        if (workExperience.length === 0) {
+            workExperience.style.display = 'none';
         }
-    ]
-
-}
-
-var education = {
-    "school": [
-        {
-            "name": "The University of the Arts",
-            "years": 3,
-            "city": "Philadelphia, PA",
-            "major": "Art Education",
-            "graduationDate": 2000
-        },
-        {
-            "name": "Purchase College SUNY",
-            "years": 3,
-            "city": "Purchase, NY",
-            "major": "Philosophy",
-            "graduationDate": 1993
+        if (myProjects.length === 0) {
+            myProjects.style.display = 'none';
         }
-    ]
-}
-
-var formattedName = HTMLheaderName.replace('%data%', bio.name),
-    formattedRole = HTMLheaderRole.replace('%data%', bio.role),
-    formattedMobile = HTMLmobile.replace('%data%', bio.contacts.mobile),
-    formattedEmail = HTMLemail.replace('%data%', bio.contacts.email),
-    formattedGit = HTMLgithub.replace('%data%', bio.contacts.github),
-    formattedTwitter = HTMLtwitter.replace('%data%', bio.contacts.twitter),
-    formattedLocation = HTMLlocation.replace('%data%', bio.contacts.location),
-    formattedBioPic = HTMLbioPic.replace('%data%', bio.bioPic),
-    formattedBioMsg = HTMLwelcomeMsg.replace('%data%', bio.welcomeMsg);
-
-// name header
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-
-// contact info
-$("#topContacts").append(formattedMobile);
-$("#topContacts").append(formattedEmail);
-$("#topContacts").append(formattedGit);
-$("#topContacts").append(formattedTwitter);
-$("#topContacts").append(formattedLocation);
-
-// pic and message
-$("#topContacts").append(formattedBioPic);
-$("#topContacts").append(formattedBioMsg);
-
-// skills (optional)
-if (bio.skills && bio.skills != '') {
-    // the skills header
-    $("#header").append(HTMLskillsStart);
-
-    for (item in bio.skills) {
-        // the skills
-        $("#skills").append(HTMLskills.replace('%data%', bio.skills[item]));
+        if (myEducation.length === 0) {
+            myEducation.style.display = 'none';
+        }
+        if (letsConnect.length === 0) {
+            letsConnect.style.display = 'none';
+        }
+        if (mapDivSection === null) {
+            mapDivSection.style.display = 'none';
+        }
     }
-}
 
-// work experience
-function displayWork() {
-    for (item in work.jobs) {
-        $("#workExperience").append(HTMLworkStart);
-        // employer and title
-        $(".work-entry:last").append(HTMLworkEmployer.replace('%data%', work.jobs[item].employer) +
-            HTMLworkTitle.replace('%data%', work.jobs[item].title));
-        // years
-        $(".work-entry:last").append(HTMLworkDates.replace('%data%', work.jobs[item].years));
-        // location
-        $(".work-entry:last").append(HTMLworkLocation.replace('%data%', work.jobs[item].location));
-        // description
-        $(".work-entry:last").append(HTMLworkDescription.replace('%data%', work.jobs[item].description));
+    // use helper.js
+    var formattedName = HTMLheaderName.replace('%data%', bio.name),
+        formattedRole = HTMLheaderRole.replace('%data%', bio.role),
+        formattedMobile = HTMLmobile.replace('%data%', bio.contacts.mobile),
+        formattedEmail = HTMLemail.replace('%data%', bio.contacts.email),
+        formattedGit = HTMLgithub.replace('%data%', bio.contacts.github),
+        formattedTwitter = HTMLtwitter.replace('%data%', bio.contacts.twitter),
+        formattedLocation = HTMLlocation.replace('%data%', bio.contacts.location),
+        formattedBioPic = HTMLbioPic.replace('%data%', bio.bioPic),
+        formattedBioMsg = HTMLwelcomeMsg.replace('%data%', bio.welcomeMsg);
+
+    // header
+    function displayHeader() {
+        $("#header").prepend(formattedRole);
+        $("#header").prepend(formattedName);
     }
-}
 
-// the internationalize button
-$("#main").append(internationalizeButton);
-
-// procedure to make the first name title case
-// and the last name CAPS
-function inName() {
-    var usName = bio.name,
-        fName = usName.split(' ')[0],
-        lName = usName.split(' ')[1];
-
-    // Ensure first name is title case
-    fName = fName[0].toUpperCase() + fName.substring(1);
-
-    // Make last name CAPS
-    lName = lName.toUpperCase();
-
-    var newName = fName + ' ' + lName;
-
-    return newName;
-}
-
-// display the projects
-projects.display = function() {
-    for (item in projects.project) {
-        $("#projects").append(HTMLprojectStart);
-        $(".project-entry:last").append(HTMLprojectTitle.replace('%data%', projects.project[item].name));
-        $(".project-entry:last").append(HTMLprojectDates.replace('%data%', projects.project[item].year));
-        $(".project-entry:last").append(HTMLprojectDescription.replace('%data%', projects.project[item].description));
+    // contact info
+    function displayContactInfo() {
+        $("#topContacts").append(formattedMobile);
+        $("#topContacts").append(formattedEmail);
+        $("#topContacts").append(formattedGit);
+        $("#topContacts").append(formattedTwitter);
+        $("#topContacts").append(formattedLocation);
+        $("#topContacts").append(formattedBioPic);
+        $("#topContacts").append(formattedBioMsg);
     }
-}
 
-// add the map
-// $("#mapDiv").append(googleMap);
+    // skills
+    function displayBio() {
+        if (bio.skills && bio.skills !== '') {
+            // the skills header
+            $("#header").append(HTMLskillsStart);
 
-// function calls
-displayWork();
-projects.display();
+            for (var item in bio.skills) {
+                if (bio.skills.hasOwnProperty(item)) {
+                    // the skills
+                    $("#skills").append(HTMLskills.replace('%data%', bio.skills[item]));
+                }
+            }
+        }
+    }
+
+    // work experience
+    function displayWork() {
+        for (var item in work.jobs) {
+            if (work.jobs.hasOwnProperty(item)) {
+                $("#workExperience").append(HTMLworkStart);
+                // employer and title
+                $(".work-entry:last").append(HTMLworkEmployer.replace('%data%', work.jobs[item].employer) +
+                    HTMLworkTitle.replace('%data%', work.jobs[item].title));
+                // years
+                $(".work-entry:last").append(HTMLworkDates.replace('%data%', work.jobs[item].years));
+                // location
+                $(".work-entry:last").append(HTMLworkLocation.replace('%data%', work.jobs[item].location));
+                // description
+                $(".work-entry:last").append(HTMLworkDescription.replace('%data%', work.jobs[item].description));
+            }
+        }
+    }
+
+    // the internationalize button
+    $("#main").append(internationalizeButton);
+
+    // procedure to make the first name title case
+    // and the last name CAPS
+    function inName() {
+        var usName = bio.name,
+            fName = usName.split(' ')[0],
+            lName = usName.split(' ')[1];
+
+        // Ensure first name is title case
+        fName = fName[0].toUpperCase() + fName.substring(1);
+
+        // Make last name CAPS
+        lName = lName.toUpperCase();
+
+        var newName = fName + ' ' + lName;
+
+        return newName;
+    }
+
+    // display the projects
+    function displayProjects() {
+        for (var item in projects.project) {
+            if (projects.project.hasOwnProperty(item)) {
+                $("#projects").append(HTMLprojectStart);
+                $(".project-entry:last").append(HTMLprojectTitle.replace('%data%', projects.project[item].name));
+                $(".project-entry:last").append(HTMLprojectDates.replace('%data%', projects.project[item].year));
+                $(".project-entry:last").append(HTMLprojectDescription.replace('%data%', projects.project[item].description));
+                $(".project-entry:last").append(HTMLprojectURL.replace('%data%', projects.project[item].projectURL));
+            }
+        }
+    }
+
+    // add the map
+    function displayMap() {
+        $("#mapDiv").append(googleMap);
+    }
+
+    // function calls
+    resumeInit(resumeTargets);
+    displayHeader();
+    displayContactInfo();
+    displayBio();
+    displayWork();
+    displayProjects();
+    displayMap();
+
+});
