@@ -164,7 +164,7 @@ $(function() {
     // footer contents
     function displayFooter() {
         var HTMLfooterGit = '<li><a href="%data%" target="_blank">' +
-                '<span class="fa fa-github-square fa-2x"></span></a>"</li>';
+                '<span class="fa fa-github-square fa-2x"></span></a></li>';
 
         $('#footerContacts').append(HTMLfooterGit.replace('%data%', bio.contacts.github));
     }
