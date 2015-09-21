@@ -8,9 +8,7 @@ $(function() {
             workExperience = targets.workExperience,
             myProjects = targets.myProjects,
             myEducation = targets.myEducation,
-            mapDivSection = targets.mapDiv,
-            letsConnect = targets.letsConnect;
-
+            mapDivSection = targets.mapDiv;
         // toggle the sections if there is no data
         if (mainHeader.length === 0) {
             mainHeader.style.display = 'none';
@@ -24,33 +22,41 @@ $(function() {
         if (myEducation.length === 0) {
             myEducation.style.display = 'none';
         }
-        if (letsConnect.length === 0) {
-            letsConnect.style.display = 'none';
-        }
         if (mapDivSection === null) {
             mapDivSection.style.display = 'none';
         }
     }
 
-    // use helper.js
-    var formattedName = HTMLheaderName.replace('%data%', bio.name),
-        formattedRole = HTMLheaderRole.replace('%data%', bio.role),
-        formattedMobile = HTMLmobile.replace('%data%', bio.contacts.mobile),
-        formattedEmail = HTMLemail.replace('%data%', bio.contacts.email),
-        formattedGit = HTMLgithub.replace('%data%', bio.contacts.github),
-        formattedTwitter = HTMLtwitter.replace('%data%', bio.contacts.twitter),
-        formattedLocation = HTMLlocation.replace('%data%', bio.contacts.location),
-        formattedBioPic = HTMLbioPic.replace('%data%', bio.bioPic),
-        formattedBioMsg = HTMLwelcomeMsg.replace('%data%', bio.welcomeMsg);
-
     // header
     function displayHeader() {
+        var HTMLheaderName = '<h1 id="name">%data%</h1>',
+            HTMLheaderRole = '<span>%data%</span><hr/>',
+            formattedName = HTMLheaderName.replace('%data%', bio.name),
+            formattedRole = HTMLheaderRole.replace('%data%', bio.role);
+
         $("#header").prepend(formattedRole);
         $("#header").prepend(formattedName);
     }
 
     // contact info
     function displayContactInfo() {
+        var HTMLcontactGeneric = '<li class="flex-item"><span class="orange-text">%contact%</span>' +
+                '<span class="white-text">%data%</span></li>',
+            HTMLmobile = '<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>',
+            HTMLemail = '<li class="flex-item"><span class="orange-text">email</span><span class="white-text">%data%</span></li>',
+            HTMLtwitter = '<li class="flex-item"><span class="orange-text">twitter</span><span class="white-text">%data%</span></li>',
+            HTMLgithub = '<li class="flex-item"><span class="orange-text">github</span><span class="white-text">%data%</span></li>',
+            HTMLlocation = '<li class="flex-item"><span class="orange-text">location</span><span class="white-text">%data%</span></li>',
+            HTMLbioPic = '<img src="%data%" class="biopic">',
+            HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>',
+            formattedMobile = HTMLmobile.replace('%data%', bio.contacts.mobile),
+            formattedEmail = HTMLemail.replace('%data%', bio.contacts.email),
+            formattedGit = HTMLgithub.replace('%data%', bio.contacts.github),
+            formattedTwitter = HTMLtwitter.replace('%data%', bio.contacts.twitter),
+            formattedLocation = HTMLlocation.replace('%data%', bio.contacts.location),
+            formattedBioPic = HTMLbioPic.replace('%data%', bio.bioPic),
+            formattedBioMsg = HTMLwelcomeMsg.replace('%data%', bio.welcomeMsg);
+
         $("#topContacts").append(formattedMobile);
         $("#topContacts").append(formattedEmail);
         $("#topContacts").append(formattedGit);
@@ -62,6 +68,10 @@ $(function() {
 
     // skills
     function displayBio() {
+        var HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills"' +
+                'class="flex-box"></ul>',
+            HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>';
+
         if (bio.skills && bio.skills !== '') {
             // the skills header
             $("#header").append(HTMLskillsStart);
@@ -77,6 +87,13 @@ $(function() {
 
     // work experience
     function displayWork() {
+        var HTMLworkStart = '<div class="work-entry"></div>',
+            HTMLworkEmployer = '<a href="#">%data%',
+            HTMLworkTitle = ' - %data%</a>',
+            HTMLworkDates = '<div class="date-text">%data%</div>',
+            HTMLworkLocation = '<div class="location-text">%data%</div>',
+            HTMLworkDescription = '<p><br>%data%</p>';
+
         for (var item in work.jobs) {
             if (work.jobs.hasOwnProperty(item)) {
                 $("#workExperience").append(HTMLworkStart);
@@ -94,28 +111,16 @@ $(function() {
     }
 
     // the internationalize button
-    $("#main").append(internationalizeButton);
-
-    // procedure to make the first name title case
-    // and the last name CAPS
-    function inName() {
-        var usName = bio.name,
-            fName = usName.split(' ')[0],
-            lName = usName.split(' ')[1];
-
-        // Ensure first name is title case
-        fName = fName[0].toUpperCase() + fName.substring(1);
-
-        // Make last name CAPS
-        lName = lName.toUpperCase();
-
-        var newName = fName + ' ' + lName;
-
-        return newName;
-    }
+    // $("#main").append(internationalizeButton);
 
     // display the projects
     function displayProjects() {
+        var HTMLprojectStart = '<div class="project-entry"></div>',
+            HTMLprojectTitle = '<a href="#">%data%</a>',
+            HTMLprojectDates = '<div class="date-text">%data%</div>',
+            HTMLprojectDescription = '<p><br>%data%</p>',
+            HTMLprojectURL = '<p><a href="%data%" target="_blank">See the project on: gitHub</a></p>';
+
         for (var item in projects.project) {
             if (projects.project.hasOwnProperty(item)) {
                 $("#projects").append(HTMLprojectStart);
@@ -127,8 +132,136 @@ $(function() {
         }
     }
 
-    // add the map
+    // display education
+    function displayEducation() {
+
+        var HTMLschoolStart = '<div class="education-entry"></div>',
+            HTMLschoolName = '<a href="#">%data% ',
+            HTMLschoolDegree = '&mdash; %data%</a>',
+            HTMLschoolDates = '<div class="date-text">%data%</div>',
+            HTMLschoolLocation = '<div class="location-text">%data%</div>',
+            HTMLschoolMajor = '<em><br>Major: %data%</em>',
+            HTMLonlineClasses = '<h3>Online Classes</h3>',
+            HTMLonlineTitle = '<a href="#">%data%',
+            HTMLonlineSchool = ' - %data%</a>',
+            HTMLonlineDates = '<div class="date-text">%data%</div>',
+            HTMLonlineURL = '<br><a href="#">%data%</a>';
+
+        for (var item in education.school) {
+            if (education.school.hasOwnProperty(item)) {
+                $("#education").append(HTMLschoolStart);
+                $(".education-entry:last").append(HTMLschoolName.replace('%data%', education.school[item].name) +
+                    HTMLschoolDegree.replace('%data%', education.school[item].major));
+                $(".education-entry:last").append(HTMLschoolDates.replace('%data%', education.school[item].dates));
+            }
+        }
+
+    }
+
+    // google map
+    function initializeMap() {
+
+        var locations,
+            map;
+
+        var mapOptions = {
+            disableDefaultUI: true
+        };
+
+        map = new google.maps.Map(document.querySelector('#map'), mapOptions);
+
+        function locationFinder() {
+
+            // initializes an empty array
+            var locations = [];
+
+            // adds the single location property from bio to the locations array
+            locations.push(bio.contacts.location);
+
+            // iterates through school locations and appends each location to
+            // the locations array
+            for (var school in education.schools) {
+                locations.push(education.schools[school].location);
+            }
+
+            // iterates through work locations and appends each location to
+            // the locations array
+            for (var job in work.jobs) {
+                locations.push(work.jobs[job].location);
+            }
+
+            return locations;
+        }
+
+        function createMapMarker(placeData) {
+
+            // The next lines save location data from the search result object to local variables
+            var lat = placeData.geometry.location.lat();  // latitude from the place service
+            var lon = placeData.geometry.location.lng();  // longitude from the place service
+            var name = placeData.formatted_address;   // name of the place from the place service
+            var bounds = window.mapBounds;            // current boundaries of the map window
+
+            // marker is an object with additional data about the pin for a single location
+            var marker = new google.maps.Marker({
+                map: map,
+                position: placeData.geometry.location,
+                title: name
+            });
+
+            var infoWindow = new google.maps.InfoWindow({
+                content: name
+            });
+
+            bounds.extend(new google.maps.LatLng(lat, lon));
+            map.fitBounds(bounds);
+            map.setCenter(bounds.getCenter());
+        }
+
+        function callback(results, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                createMapMarker(results[0]);
+            }
+        }
+
+        function pinPoster(locations) {
+
+            var service = new google.maps.places.PlacesService(map);
+
+            for (var place in locations) {
+
+                var request = {
+                    query: locations[place]
+                };
+
+                service.textSearch(request, callback);
+            }
+        }
+
+        // Sets the boundaries of the map based on pin locations
+        window.mapBounds = new google.maps.LatLngBounds();
+
+        // locations is an array of location strings returned from locationFinder()
+        locations = locationFinder();
+
+        // pinPoster(locations) creates pins on the map for each location in
+        // the locations array
+        pinPoster(locations);
+
+    }
+
+    // display the map
     function displayMap() {
+        var googleMap = '<div id="map"></div>';
+
+        // Calls the initializeMap() function when the page loads
+        window.addEventListener('load', initializeMap);
+
+        // adjust the map bounds
+        window.addEventListener('resize', function(e) {
+            // Make sure the map bounds get updated on page resize
+            map.fitBounds(mapBounds);
+        });
+
         $("#mapDiv").append(googleMap);
     }
 
@@ -139,6 +272,7 @@ $(function() {
     displayBio();
     displayWork();
     displayProjects();
+    displayEducation();
     displayMap();
 
 });
