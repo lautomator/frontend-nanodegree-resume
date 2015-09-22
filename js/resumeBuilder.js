@@ -35,7 +35,7 @@ $(function() {
     // header
     function displayHeader() {
         var HTMLheaderName = '<h1 id="name">%data%</h1>',
-            HTMLheaderRole = '<span>%data%</span><hr/>',
+            HTMLheaderRole = '<span class="header-role">%data%</span><hr/>',
             formattedName = HTMLheaderName.replace('%data%', bio.name),
             formattedRole = HTMLheaderRole.replace('%data%', bio.role);
 
@@ -45,16 +45,16 @@ $(function() {
 
     // contact info
     function displayContactInfo() {
-        var HTMLmobile = '<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>',
-            HTMLemail = '<li class="flex-item"><span class="orange-text">email</span><span class="white-text">%data%</span></li>',
-            HTMLtwitter = '<li class="flex-item"><span class="orange-text">twitter</span><span class="white-text">%data%</span></li>',
-            HTMLgithub = '<li class="flex-item"><span class="orange-text">github</span><span class="white-text">%data%</span></li>',
-            HTMLlocation = '<li class="flex-item"><span class="orange-text">location</span><span class="white-text">%data%</span></li>',
-            HTMLbioPic = '<img src="%data%" class="biopic">',
+        var HTMLmobile = '<li class="flex-item"><span class="main-text">mobile: </span><span class="main-text">%data%</span></li>',
+            HTMLemail = '<li class="flex-item"><span class="main-text">email: </span><span class="main-text"><a href="mailto:%data%">%data%</a></span></li>',
+            HTMLtwitter = '<li class="flex-item"><span class="main-text">twitter: </span><span class="main-text"><a href="%data%" target="_blank">@JMerigliano</a></span></li>',
+            HTMLgithub = '<li class="flex-item"><span class="main-text">github:</span><span class="main-text"><a href="%data%" target="_blank">%data%</a></span></li>',
+            HTMLlocation = '<li class="flex-item"><span class="main-text">location:</span><span class="main-text">%data%</span></li>',
+            HTMLbioPic = '<img src="%data%" alt="jm">',
             HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>',
             formattedMobile = HTMLmobile.replace('%data%', bio.contacts.mobile),
-            formattedEmail = HTMLemail.replace('%data%', bio.contacts.email),
-            formattedGit = HTMLgithub.replace('%data%', bio.contacts.github),
+            formattedEmail = HTMLemail.replace(/%data%/g, bio.contacts.email),
+            formattedGit = HTMLgithub.replace(/%data%/g, bio.contacts.github),
             formattedTwitter = HTMLtwitter.replace('%data%', bio.contacts.twitter),
             formattedLocation = HTMLlocation.replace('%data%', bio.contacts.location),
             formattedBioPic = HTMLbioPic.replace('%data%', bio.bioPic),
@@ -65,15 +65,14 @@ $(function() {
         $("#topContacts").append(formattedGit);
         $("#topContacts").append(formattedTwitter);
         $("#topContacts").append(formattedLocation);
-        $("#topContacts").append(formattedBioPic);
+        $(".biopic").append(formattedBioPic);
         $("#topContacts").append(formattedBioMsg);
     }
 
     // skills
     function displayBio() {
-        var HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills"' +
-                'class="flex-box"></ul>',
-            HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>',
+        var HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills" class="flex-box"></ul>',
+            HTMLskills = '<li class="flex-item"><span class="skills-glance"><code>%data%</code></span></li>',
             index = 0;
 
         if (bio.skills) {
@@ -92,11 +91,11 @@ $(function() {
     // work experience
     function displayWork() {
         var HTMLworkStart = '<div class="work-entry"></div>',
-            HTMLworkEmployer = '<a href="#">%data%',
-            HTMLworkTitle = ' - %data%</a>',
+            HTMLworkEmployer = '<span class="work-employer">%data%',
+            HTMLworkTitle = ' - <em class="work-title">%data%</em></span>',
             HTMLworkDates = '<div class="date-text">%data%</div>',
             HTMLworkLocation = '<div class="location-text">%data%</div>',
-            HTMLworkDescription = '<p><br>%data%</p>',
+            HTMLworkDescription = '<p>%data%</p><p>&nbsp;</p>',
             index = 0;
 
         while (index < work.jobs.length) {
@@ -123,8 +122,8 @@ $(function() {
         var HTMLprojectStart = '<div class="project-entry"></div>',
             HTMLprojectTitle = '<a href="#">%data%</a>',
             HTMLprojectDates = '<div class="date-text">%data%</div>',
-            HTMLprojectDescription = '<p><br>%data%</p>',
-            HTMLprojectURL = '<p><a href="%data%" target="_blank">See the project on: gitHub</a></p>',
+            HTMLprojectDescription = '<p>%data%</p>',
+            HTMLprojectURL = '<p><a href="%data%" target="_blank">See the project on: gitHub</a></p><p>&nbsp;</p>',
             index = 0;
 
         while (index < projects.project.length) {
@@ -146,10 +145,10 @@ $(function() {
             HTMLschoolDegree = '&mdash; %data%</a>',
             HTMLschoolDates = '<div class="date-text">%data%</div>',
             HTMLschoolLocation = '<div class="location-text">%data%</div>',
-            HTMLschoolMajor = '<em><br>Major: %data%</em>',
+            HTMLschoolMajor = '<em>Major: %data%</em><p>&nbsp;</p>',
             index = 0;
 
-        while (index < education.school) {
+        while (index < education.school.length) {
             $("#education").append(HTMLschoolStart);
             $(".education-entry:last").append(HTMLschoolName.replace('%data%', education.school[index].name) +
                 HTMLschoolDegree.replace('%data%', education.school[index].major));
@@ -163,8 +162,8 @@ $(function() {
 
     // footer contents
     function displayFooter() {
-        var HTMLfooterGit = '<li><a href="%data%" target="_blank">' +
-                '<span class="fa fa-github-square fa-2x"></span></a></li>';
+        var HTMLfooterGit = '<li class="center-content"><a href="%data%" target="_blank">' +
+                '<span class="fa fa-github-square fa-2x blue-text"></span></a></li>';
 
         $('#footerContacts').append(HTMLfooterGit.replace('%data%', bio.contacts.github));
     }

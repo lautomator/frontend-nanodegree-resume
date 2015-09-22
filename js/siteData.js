@@ -7,20 +7,24 @@ var bio = {
             mobile: '215.360.9523',
             email: 'jmerigliano@gmail.com',
             github: 'https://github.com/lautomator/',
-            twitter: '@JMerigliano',
+            twitter: 'https://twitter.com/JMerigliano',
             location: 'Philadelphia, PA'
         },
-        bioPic: 'images/MJ4_4983.jpg',
+        bioPic: 'images/jm-duotone.jpg',
         welcomeMsg: 'Welcome. Please view my resume to see all of my web development skills. Thanks for visiting!',
         skills: [
-            'HTML/CSS',
-            'JavaScript, jQuery',
-            'Python',
-            'PHP',
-            'Linux',
-            'Responsive Web Development',
-            'DB: MySQL, PostgreSQL',
-            'Version Control: GitHub, SVN'
+            'html',
+            'css',
+            'javaScript',
+            'jQuery',
+            'python',
+            'php',
+            'linux',
+            'responsive web development',
+            'postgreSQL',
+            'mySQL',
+            'gitHub',
+            'svn'
         ]
     },
     work = {

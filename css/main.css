@@ -17,13 +17,9 @@ h3,
 h4,
 h5,
 h6 {
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
   font-family: "Dosis", sans-serif;
-}
-
-.clear-fix {
-  overflow: auto;
 }
 
 /*
@@ -43,10 +39,6 @@ body {
   max-width: 1024px;
 }
 
-#lets-connect {
-  text-align: center;
-}
-
 #map {
   display: block;
   height: 100%;
@@ -56,11 +48,11 @@ body {
 #mapDiv {
   height: 400px;
   width: 100%;
-  padding-bottom: 5%;
+  padding-bottom: 15%;
 }
 
 #header {
-  /*background-color: #fff;*/
+  background-color: #fff;
 }
 
 .flex-box {
@@ -68,8 +60,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 10px;
+  line-height: 40px;
 }
 
 .center-content {
@@ -78,26 +69,23 @@ body {
 
 .education-entry,
 .work-entry,
-.project-entry {
+.project-entry,
+.footer-connect {
   padding: 0 5%;
 }
 
+.project-entry a {
+  font-size: 20px;
+  line-height: 24px;
+}
+
 #skills-h3 {
-  color: #f5ae23;
-  display: none;
+  color: #4a4a4a;
+  display: inline-block;
 }
 
 .biopic {
   display: none;
-}
-
-img {
-  border-radius: 6px;
-  padding: 10px;
-}
-
-span {
-  padding: 5px;
 }
 
 /*
@@ -107,32 +95,48 @@ span {
  *
  */
 
+.header-role {
+  color: #333;
+  font-size: 30px;
+}
+
+.main-contacts,
+.main-contacts a {
+  font-size: 24px;
+}
+
+.skills-glance {
+  background: #1199c3;
+  border-radius: 10px;
+  color: #fff;
+  margin: 5px;
+  padding: 5px;
+}
 
 h1 {
-  font-size: 40px;
-  color: #f5a623;
-  line-height: 48px;
+  font-size: 50px;
+  color: #1199c3;
+  line-height: 50px;
   display: inline;
 }
 
 h2 {
   font-weight: bold;
-  font-size: 24px;
+  font-size: 34px;
   color: #999;
   line-height: 29px;
-  padding: 10px;
 }
 
 h3 {
   font-style: italic;
-  font-size: 20px;
+  font-size: 28px;
   color: #000;
   line-height: 22px;
 }
 
 h4 {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 24px;
   color: #4a4a4a;
   line-height: 17px;
 }
@@ -141,57 +145,52 @@ h2,
 h3,
 h4,
 h5 {
-  padding:10px 5%;
+  padding: 10px 5%;
 
 }
 
 .date-text {
   font-style: italic;
-  font-size: 16px;
+  font-size: 18px;
   color: #999;
-  line-height: 16px;
-  float: left;
+  line-height: 24px;
 }
 
 .location-text {
   font-style: italic;
-  font-size: 16px;
+  font-size: 18px;
   color: #999;
-  line-height: 16px;
-  float: right;
+  line-height: 24px;
 }
 
 p {
-  font-size: 16px;
+  font-size: 18px;
   color: #333;
-  line-height: 21px;
+  line-height: 24px;
 }
 
 a {
   color: #1199c3;
   text-decoration: none;
   margin-top: 10px;
-  display: block;
 }
 
 .welcome-message {
   font-style: italic;
   font-size: 18px;
-  color: #f3f3f3;
+  color: #1199c3;
   line-height: 28px;
 }
 
-.orange {
-  background-color: #f5ae23;
+.blue-text {
+  color: #1199c3;
 }
 
-.orange-text {
-  color: #f5ae23;
-}
-
-.white-text {
+.main-text {
+  color: #333;
+  font-size: 20px;
   font-weight: bold;
-  color: #000;
+  line-height: 20px;
 }
 
 .gray {
@@ -206,6 +205,12 @@ a {
 
 ul {
   list-style-type: none;
+  text-align: left;
+}
+
+.work-employer,
+.work-employer {
+  font-size: 20px;
 }
 
 /*
@@ -215,9 +220,7 @@ ul {
  *
  */
 @media only screen and (max-width: 1024px) {
-  #lets-connect {
-    margin-top: 5%;
-  }
+
 }
 
 @media only screen and (max-width:900px) {
@@ -225,20 +228,32 @@ ul {
 }
 
 @media only screen and (max-width: 750px) {
-  #lets-connect {
-    margin-top: 10%;
+  .header-role {
+    display: block;
   }
 
-  .welcome-message {
-    display: none;
+  #lets-connect {
+    margin-top: 10%;
   }
 }
 
 @media only screen and (min-width: 750px) {
-  #skills-h3,
+  .header-role {
+    float: right;
+  }
+
+  #skills-h3 {
+    display: block;
+    padding: 10px;
+  }
+
   .biopic {
     display: block;
     padding: 10px;
     width: 246px;
+  }
+
+  #mapDiv {
+    padding-bottom: 10%;
   }
 }
