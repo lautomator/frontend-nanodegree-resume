@@ -34,7 +34,11 @@ $(function() {
 
     // header
     function displayHeader() {
-        var HTMLheaderName = '<h1 id="name">%data%</h1>',
+        var bio = {
+                name: 'John Merigliano',
+                role: 'Web Developer',
+            },
+            HTMLheaderName = '<h1 id="name">%data%</h1>',
             HTMLheaderRole = '<span class="header-role">%data%</span><hr/>',
             formattedName = HTMLheaderName.replace('%data%', bio.name),
             formattedRole = HTMLheaderRole.replace('%data%', bio.role);
@@ -45,43 +49,69 @@ $(function() {
 
     // contact info
     function displayContactInfo() {
-        var HTMLmobile = '<li class="flex-item"><span class="main-text">mobile: </span><span class="main-text">%data%</span></li>',
-            HTMLemail = '<li class="flex-item"><span class="main-text">email: </span><span class="main-text"><a href="mailto:%data%">%data%</a></span></li>',
-            HTMLtwitter = '<li class="flex-item"><span class="main-text">twitter: </span><span class="main-text"><a href="%data%" target="_blank">@JMerigliano</a></span></li>',
-            HTMLgithub = '<li class="flex-item"><span class="main-text">github:</span><span class="main-text"><a href="%data%" target="_blank">%data%</a></span></li>',
-            HTMLlocation = '<li class="flex-item"><span class="main-text">location:</span><span class="main-text">%data%</span></li>',
+        var social = {
+                contacts: {
+                    mobile: '215.360.9523',
+                    email: 'jmerigliano@gmail.com',
+                    github: 'https://github.com/lautomator/',
+                    twitter: 'https://twitter.com/JMerigliano',
+                    location: 'Philadelphia, PA'
+                },
+                bioPic: 'images/jm-duotone.jpg',
+                welcomeMsg: 'Welcome. Please view my resume to see all of my web development skills. Thanks for visiting!'
+            },
+            HTMLmobile = '<li class="flex-item"><span class="main-text">mobile:&nbsp;</span><span class="main-text">%data%</span></li>&emsp;',
+            HTMLemail = '<li class="flex-item"><span class="main-text">email:&nbsp;</span><span class="main-text"><a href="mailto:%data%">%data%</a></span></li>&emsp;',
+            HTMLtwitter = '<li class="flex-item"><span class="main-text">twitter:&nbsp;</span><span class="main-text"><a href="%data%" target="_blank">@JMerigliano</a></span></li>&emsp;',
+            HTMLgithub = '<li class="flex-item"><span class="main-text">github:&nbsp;</span><span class="main-text"><a href="%data%" target="_blank">%data%</a></span></li>&emsp;',
+            HTMLlocation = '<li class="flex-item"><span class="main-text">location:&nbsp;</span><span class="main-text">%data%</span></li>',
             HTMLbioPic = '<img src="%data%" alt="jm">',
-            HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>',
-            formattedMobile = HTMLmobile.replace('%data%', bio.contacts.mobile),
-            formattedEmail = HTMLemail.replace(/%data%/g, bio.contacts.email),
-            formattedGit = HTMLgithub.replace(/%data%/g, bio.contacts.github),
-            formattedTwitter = HTMLtwitter.replace('%data%', bio.contacts.twitter),
-            formattedLocation = HTMLlocation.replace('%data%', bio.contacts.location),
-            formattedBioPic = HTMLbioPic.replace('%data%', bio.bioPic),
-            formattedBioMsg = HTMLwelcomeMsg.replace('%data%', bio.welcomeMsg);
+            HTMLwelcomeMsg = '<p class="welcome-message">%data%</p>',
+            formattedMobile = HTMLmobile.replace('%data%', social.contacts.mobile),
+            formattedEmail = HTMLemail.replace(/%data%/g, social.contacts.email),
+            formattedGit = HTMLgithub.replace(/%data%/g, social.contacts.github),
+            formattedTwitter = HTMLtwitter.replace('%data%', social.contacts.twitter),
+            formattedLocation = HTMLlocation.replace('%data%', social.contacts.location),
+            formattedBioPic = HTMLbioPic.replace('%data%', social.bioPic),
+            formattedBioMsg = HTMLwelcomeMsg.replace('%data%', social.welcomeMsg);
 
         $("#topContacts").append(formattedMobile);
         $("#topContacts").append(formattedEmail);
         $("#topContacts").append(formattedGit);
         $("#topContacts").append(formattedTwitter);
         $("#topContacts").append(formattedLocation);
-        $(".biopic").append(formattedBioPic);
         $("#topContacts").append(formattedBioMsg);
+        $(".biopic").append(formattedBioPic);
+
     }
 
     // skills
     function displayBio() {
-        var HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills" class="flex-box"></ul>',
+        var skills = [
+                'html',
+                'css',
+                'javaScript',
+                'jQuery',
+                'python',
+                'php',
+                'linux',
+                'responsive web development',
+                'postgreSQL',
+                'mySQL',
+                'gitHub',
+                'svn'
+            ],
+            HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills" class="flex-box"></ul>',
             HTMLskills = '<li class="flex-item"><span class="skills-glance"><code>%data%</code></span></li>',
             index = 0;
 
-        if (bio.skills) {
+        if (skills) {
             // the skills header
             $("#header").append(HTMLskillsStart);
 
-            while (index < bio.skills.length) {
+            while (index < skills.length) {
                 // the skills
-                $("#skills").append(HTMLskills.replace('%data%', bio.skills[index]));
+                $("#skills").append(HTMLskills.replace('%data%', skills[index]));
 
                 index += 1;
             }
@@ -90,7 +120,32 @@ $(function() {
 
     // work experience
     function displayWork() {
-        var HTMLworkStart = '<div class="work-entry"></div>',
+        var work = {
+                jobs: [
+                    {
+                        title: 'Multimedia Developer',
+                        employer: 'Group360 Worldwide',
+                        years: 'January 2015 - September 2015',
+                        location: 'St Louis, MO / Remote',
+                        description: 'Collaborates on requirements and development of mobile websites; Authors, develops, produces, and tests prototype email template web applications; Maintains, and deploys HTML email assets; Repurposes and converts Flash/Action Script banner ads to HTML5 mobile-friendly versions'
+                    },
+                    {
+                        title: 'Programmer: Substitute Forms Analyst',
+                        employer: 'Solutions for Progress',
+                        years: 'September 2011 - February 2013',
+                        location: 'Philadelphia, PA',
+                        description: 'Created PDF forms to specifications; Utlized XML and FDF data files to populate PDF forms; Tested and debugged web applications utilizing PDF forms; Used command line tools to execute scripts and functions; Maintained version control'
+                    },
+                    {
+                        title: 'Contract Web Developer',
+                        employer: 'Freelance',
+                        years: 'April 2003 - May 2013',
+                        location: 'Philadelphia, PA',
+                        description: 'Identifies requirements and client needs; Develops proposals and plans (wire frames) for site layout; Collaborated with clients and artists to achieve design vision, facilitate production deadlines, and maintain design consistency; Implements coding, CMS frameworks, and scripting; Designed databases, Wordpress themes, and Django websites; Updated and maintened websites and databases'
+                    }
+                ]
+            },
+            HTMLworkStart = '<div class="work-entry"></div>',
             HTMLworkEmployer = '<span class="work-employer">%data%',
             HTMLworkTitle = ' - <em class="work-title">%data%</em></span>',
             HTMLworkDates = '<div class="date-text">%data%</div>',
@@ -119,12 +174,30 @@ $(function() {
 
     // display the projects
     function displayProjects() {
-        var HTMLprojectStart = '<div class="project-entry"></div>',
+        var projects = {
+                project: [
+                    {
+                        name: 'Codebreaker Game',
+                        year: '2015',
+                        description: 'This is a guessing game. This game is based on the classic Atari 2600 game of the same title. The object of the game is for the player to guess 3 numbers between 0 and 9 in the correct order. The game is written entirely in javaScript, HTML/CSS.',
+                        projectURL: 'https://github.com/lautomator/codebreaker',
+                        projectImage: 'images/cb-01.png'
+                    },
+                    {
+                        name: 'My Wiki',
+                        year: '2015',
+                        description: 'Project created as part of coursework for Udacity\'s Web Development Course. The site is created using Python and Google App Engine; Users can create their own account and make Wiki pages that include images and HTML formatting.',
+                        projectURL: 'https://github.com/lautomator/my_wiki',
+                        projectImage: 'images/mw-01.png'
+                    }
+                ]
+            },
+            HTMLprojectStart = '<div class="project-entry"></div>',
             HTMLprojectTitle = '<a href="#">%data%</a>',
             HTMLprojectDates = '<div class="date-text">%data%</div>',
             HTMLprojectDescription = '<p>%data%</p>',
             HTMLprojectURL = '<p><a href="%data%" target="_blank">See the project on: gitHub</a></p><p>&nbsp;</p>',
-            HTMLprojectImage = '<p><img src="%data%" class="project-image" alt="project image"></p>',
+            HTMLprojectImage = '<p><img src="%data%" class="project-image" alt="project image"></p><p>&nbsp;</p>',
             index = 0;
 
         while (index < projects.project.length) {
@@ -141,8 +214,25 @@ $(function() {
 
     // display education
     function displayEducation() {
-
-        var HTMLschoolStart = '<div class="education-entry"></div>',
+        var education = {
+                school: [
+                    {
+                        name: 'The University of the Arts',
+                        years: 2,
+                        location: 'Philadelphia, PA',
+                        major: 'Art Education',
+                        dates: '1998 - 2000'
+                    },
+                    {
+                        name: 'Purchase College SUNY',
+                        years: 3,
+                        location: 'Purchase, NY',
+                        major: 'Philosophy',
+                        dates: '1990 - 1993'
+                    }
+                ]
+            },
+            HTMLschoolStart = '<div class="education-entry"></div>',
             HTMLschoolName = '<a href="#">%data% ',
             HTMLschoolDegree = '&mdash; %data%</a>',
             HTMLschoolDates = '<div class="date-text">%data%</div>',
@@ -164,10 +254,11 @@ $(function() {
 
     // footer contents
     function displayFooter() {
-        var HTMLfooterGit = '<li class="center-content"><a href="%data%" target="_blank">' +
+        var github = 'https://github.com/lautomator/',
+            HTMLfooterGit = '<li class="center-content"><a href="%data%" target="_blank">' +
                 '<span class="fa fa-github-square fa-2x blue-text"></span></a></li>';
 
-        $('#footerContacts').append(HTMLfooterGit.replace('%data%', bio.contacts.github));
+        $('#footerContacts').append(HTMLfooterGit.replace('%data%', github));
     }
 
 
@@ -175,11 +266,33 @@ $(function() {
     function initializeMap() {
 
         var locations,
-            map,
             mapOptions = {
             disableDefaultUI: true
-        };
-
+        },
+        home = 'Philadelphia, PA',
+        education = {
+            school: [
+                {
+                    location: 'Philadelphia, PA',
+                },
+                {
+                    location: 'Purchase, NY',
+                }
+            ]
+        },
+        work = {
+            jobs: [
+                {
+                    location: 'St Louis, MO / Remote',
+                },
+                {
+                    location: 'Philadelphia, PA',
+                },
+                {
+                    location: 'Philadelphia, PA',
+                }
+            ]
+        },
         map = new google.maps.Map(document.querySelector('#map'), mapOptions);
 
         function locationFinder() {
@@ -191,7 +304,7 @@ $(function() {
             locations = [];
 
             // adds the single location property from bio to the locations array
-            locations.push(bio.contacts.location);
+            locations.push(home);
 
             // iterates through school locations and appends each location to
             // the locations array

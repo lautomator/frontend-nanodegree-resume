@@ -102,7 +102,7 @@ body {
 
 .main-contacts,
 .main-contacts a {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .skills-glance {
@@ -253,8 +253,9 @@ ul {
 
   .biopic {
     display: block;
+    float: left;
+    margin-bottom: 50px;
     padding: 10px;
-    width: 246px;
   }
 
   #mapDiv {
