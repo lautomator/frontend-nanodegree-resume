@@ -277,10 +277,10 @@ $(function() {
         window.addEventListener('load', initializeMap);
 
         // adjust the map bounds
-        window.addEventListener('resize', function(e) {
-            // Make sure the map bounds get updated on page resize
-            map.fitBounds(mapBounds);
-        });
+        // window.addEventListener('resize', function(e) {
+        //     // Make sure the map bounds get updated on page resize
+        //     map.fitBounds(mapBounds);
+        // });
 
         $("#mapDiv").append(googleMap);
     }
