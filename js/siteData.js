@@ -58,13 +58,15 @@ var bio = {
                 name: 'Codebreaker Game',
                 year: '2015',
                 description: 'This is a guessing game. This game is based on the classic Atari 2600 game of the same title. The object of the game is for the player to guess 3 numbers between 0 and 9 in the correct order. The game is written entirely in javaScript, HTML/CSS.',
-                projectURL: 'https://github.com/lautomator/codebreaker'
+                projectURL: 'https://github.com/lautomator/codebreaker',
+                projectImage: 'images/cb-01.png'
             },
             {
                 name: 'My Wiki',
                 year: '2015',
                 description: 'Project created as part of coursework for Udacity\'s Web Development Course. The site is created using Python and Google App Engine; Users can create their own account and make Wiki pages that include images and HTML formatting.',
-                projectURL: 'https://github.com/lautomator/my_wiki'
+                projectURL: 'https://github.com/lautomator/my_wiki',
+                projectImage: 'images/mw-01.png'
             }
         ]
 

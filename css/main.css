@@ -219,13 +219,13 @@ ul {
  *
  *
  */
-@media only screen and (max-width: 1024px) {
+/*@media only screen and (max-width: 1024px) {
 
 }
 
 @media only screen and (max-width:900px) {
 
-}
+}*/
 
 @media only screen and (max-width: 750px) {
   .header-role {
@@ -234,6 +234,10 @@ ul {
 
   #lets-connect {
     margin-top: 10%;
+  }
+
+  .project-image {
+    width: 100%;
   }
 }
 

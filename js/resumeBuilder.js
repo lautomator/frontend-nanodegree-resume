@@ -124,6 +124,7 @@ $(function() {
             HTMLprojectDates = '<div class="date-text">%data%</div>',
             HTMLprojectDescription = '<p>%data%</p>',
             HTMLprojectURL = '<p><a href="%data%" target="_blank">See the project on: gitHub</a></p><p>&nbsp;</p>',
+            HTMLprojectImage = '<p><img src="%data%" class="project-image" alt="project image"></p>',
             index = 0;
 
         while (index < projects.project.length) {
@@ -132,6 +133,7 @@ $(function() {
             $(".project-entry:last").append(HTMLprojectDates.replace('%data%', projects.project[index].year));
             $(".project-entry:last").append(HTMLprojectDescription.replace('%data%', projects.project[index].description));
             $(".project-entry:last").append(HTMLprojectURL.replace('%data%', projects.project[index].projectURL));
+            $(".project-entry:last").append(HTMLprojectImage.replace('%data%', projects.project[index].projectImage));
 
             index += 1;
         }
